@@ -106,4 +106,3 @@ This project demonstrates the value of data analysis and visualization in making
 
 ---
 
-This version is visually organized, includes technology badges, and makes key points easy to spot. Let me know if you want more adjustments!
