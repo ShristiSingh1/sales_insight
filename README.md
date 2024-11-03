@@ -1,11 +1,15 @@
 
-
 ---
 
 # Sales Insights Data Analysis Project
 
 ## Project Overview
 This project focuses on analyzing sales data to help the company understand its sales trends and make informed decisions. A Power BI dashboard was created to visualize key insights, with the aim of potentially increasing revenue by 7% in the next quarter.
+
+## Power BI Dashboard
+Below is a screenshot of the Power BI dashboard created for this project, showing key metrics like total revenue, sales quantity by markets, revenue trends, top customers, and top products:
+
+![Power BI Dashboard Screenshot](https://github.com/ShristiSingh1/sales_insight/blob/77cc864d18cd45fd1e6548f7abd225c2fcc9246c/Dashboard.png)
 
 ## Table of Contents
 - [Project Phases](#project-phases)
@@ -118,3 +122,4 @@ This formula assumes a conversion rate of 1 USD = 75 INR.
 This project demonstrates how data analysis and visualization can provide valuable business insights. The Power BI dashboard created here effectively showcases sales trends, enabling data-driven decision-making. The analysis suggests that leveraging these insights can increase revenue by approximately 7% in the coming quarter. Future improvements could include integrating real-time data and predictive analytics to further enhance the dashboard’s utility.
 
 ---
+
