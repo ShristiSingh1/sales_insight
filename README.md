@@ -1,73 +1,120 @@
- 
-Sales Insights Data Analysis Project
-
-Understanding the problem
-1.Requirement gathering
-2.Data collection
-3. Data processing
-4.Data modelling
-5.Dashboard building
-6.Deployment
-
-Technology used
-1.SQL
-2.Power BI
-
-key points
--->Designed a power bi dashboard to understand company sales trends.
--->The final dashboard was effective at displaying the sales trend of company,allowing users to understand the data and make decisions
--->This dashboards could help in increasing the revenue at least by 7% in the next quarter
 
 
-Other things related to this project
-1. SQL database dump is in db_dump.sql file . 
+---
 
-Data Analysis Using SQL
+# Sales Insights Data Analysis Project
 
-1. Show all customer records
+## Project Overview
+This project focuses on analyzing sales data to help the company understand its sales trends and make informed decisions. A Power BI dashboard was created to visualize key insights, with the aim of potentially increasing revenue by 7% in the next quarter.
 
-    `SELECT * FROM customers;`
+## Table of Contents
+- [Project Phases](#project-phases)
+- [Technologies Used](#technologies-used)
+- [Key Highlights](#key-highlights)
+- [SQL Analysis](#sql-analysis)
+- [Power BI Analysis](#power-bi-analysis)
+- [Conclusion](#conclusion)
 
-2. Show total number of customers
+## Project Phases
+1. **Requirement Gathering** - Identifying business needs and determining relevant metrics for sales analysis.
+2. **Data Collection** - Gathering sales data from company databases.
+3. **Data Processing** - Cleaning and structuring the data for effective analysis.
+4. **Data Modeling** - Building data models to facilitate Power BI visualizations.
+5. **Dashboard Building** - Designing a Power BI dashboard for interactive data exploration.
+6. **Deployment** - Publishing the dashboard for use by stakeholders.
 
-    `SELECT count(*) FROM customers;`
+## Technologies Used
+- **SQL** - Data extraction and transformation.
+- **Power BI** - Data visualization and dashboard creation.
 
-3. Show transactions for Chennai market (market code for chennai is Mark001
+## Key Highlights
+- Designed a Power BI dashboard to visualize sales trends and provide actionable insights.
+- Enabled users to track sales patterns, allowing for informed business decisions.
+- Projected revenue increase of at least 7% based on insights from the dashboard.
 
-    `SELECT * FROM transactions where market_code='Mark001';`
+---
 
-4. Show distrinct product codes that were sold in chennai
+## SQL Analysis
 
-    `SELECT distinct product_code FROM transactions where market_code='Mark001';`
+Below are the SQL queries used to analyze the data:
 
-5. Show transactions where currency is US dollars
+### 1. Show all customer records
+```sql
+SELECT * FROM customers;
+```
 
-    `SELECT * from transactions where currency="USD"`
+### 2. Show total number of customers
+```sql
+SELECT COUNT(*) FROM customers;
+```
 
-6. Show transactions in 2020 join by date table
+### 3. Show transactions for the Chennai market (market code for Chennai is `Mark001`)
+```sql
+SELECT * FROM transactions WHERE market_code = 'Mark001';
+```
 
-    `SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;`
+### 4. Show distinct product codes sold in Chennai
+```sql
+SELECT DISTINCT product_code FROM transactions WHERE market_code = 'Mark001';
+```
 
-7. Show total revenue in year 2020,
+### 5. Show transactions where the currency is US dollars
+```sql
+SELECT * FROM transactions WHERE currency = 'USD';
+```
 
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";`
-	
-8. Show total revenue in year 2020, January Month,
+### 6. Show transactions in 2020 by joining with the date table
+```sql
+SELECT transactions.*, date.* 
+FROM transactions 
+INNER JOIN date ON transactions.order_date = date.date 
+WHERE date.year = 2020;
+```
 
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or transactions.currency="USD\r");`
+### 7. Show total revenue in the year 2020
+```sql
+SELECT SUM(transactions.sales_amount) 
+FROM transactions 
+INNER JOIN date ON transactions.order_date = date.date 
+WHERE date.year = 2020 
+  AND (transactions.currency = 'INR' OR transactions.currency = 'USD');
+```
 
-9. Show total revenue in year 2020 in Chennai
+### 8. Show total revenue in January 2020
+```sql
+SELECT SUM(transactions.sales_amount) 
+FROM transactions 
+INNER JOIN date ON transactions.order_date = date.date 
+WHERE date.year = 2020 
+  AND date.month_name = 'January' 
+  AND (transactions.currency = 'INR' OR transactions.currency = 'USD');
+```
 
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020
-and transactions.market_code="Mark001";`
+### 9. Show total revenue in 2020 for Chennai
+```sql
+SELECT SUM(transactions.sales_amount) 
+FROM transactions 
+INNER JOIN date ON transactions.order_date = date.date 
+WHERE date.year = 2020 
+  AND transactions.market_code = 'Mark001';
+```
 
+---
 
-Data Analysis Using Power BI
-============================
+## Power BI Analysis
 
-1. Formula to create norm_amount column
+### Formula to Create `norm_amount` Column
+The following formula is used to create a new column, `norm_amount`, in Power BI. It normalizes the sales amount based on the currency:
 
-`= Table.AddColumn(#"Filtered Rows", "norm_amount", each if [currency] = "USD" or [currency] ="USD#(cr)" then [sales_amount]*75 else [sales_amount], type any)`
+```plaintext
+= Table.AddColumn(#"Filtered Rows", "norm_amount", each if [currency] = "USD" or [currency] = "USD#(cr)" then [sales_amount] * 75 else [sales_amount], type any)
+```
 
+This formula assumes a conversion rate of 1 USD = 75 INR.
 
+---
 
+## Conclusion
+This project demonstrates how data analysis and visualization can provide valuable business insights. The Power BI dashboard created here effectively showcases sales trends, enabling data-driven decision-making. The analysis suggests that leveraging these insights can increase revenue by approximately 7% in the coming quarter. Future improvements could include integrating real-time data and predictive analytics to further enhance the dashboard’s utility.
+
+---
